@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import AppGlobalStyle from "components/common/AppGlobalStyle";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MainPage from "pages/Main";
+import { ThemeProvider } from "emotion-theming";
+import theme from "lib/styles/theme";
+import SearchSeriesProvider from "components/search/SearchSeriesProvider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <SearchSeriesProvider>
+        <AppGlobalStyle />
+        <Router>
+          <Switch>
+            <Route path={"/"} exact>
+              <MainPage />
+            </Route>
+          </Switch>
+        </Router>
+      </SearchSeriesProvider>
+    </ThemeProvider>
   );
 }
 
